@@ -26,8 +26,8 @@
     /* Navbar display settings */
     display: flex;
     justify-content: space-between;
-    color: #ffffff;
-    background-color: #000000;
+    color: var(--white);
+    background-color: #8372a1;
 
     &[variant="black"] {
         background: var(--variant-black);
