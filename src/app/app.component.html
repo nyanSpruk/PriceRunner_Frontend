@@ -1,6 +1,13 @@
 <navbar></navbar>
 <div class="main-container">
-  <div *ngFor="let izdelek of izdelki" class="izdelki">
-    {{izdelek.name}}
-  </div>
+  <ng-container *ngIf="izdelki.length > 0; else emptyBlock">
+    <div *ngFor="let izdelek of izdelki" class="izdelki">
+      {{izdelek.name}}
+    </div>
+  </ng-container>
+  <ng-template #emptyBlock>
+    <div class="empty-block">
+      <h1>There are no products</h1>
+    </div>
+  </ng-template>
 </div>
