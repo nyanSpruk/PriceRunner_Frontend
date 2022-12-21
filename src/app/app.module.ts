@@ -11,6 +11,7 @@ import { ColumnComponent } from './components/columns/column/column.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CreateItemComponent } from './screens/create-item/create-item.component';
 import { CartComponent } from './screens/cart/cart.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { CartComponent } from './screens/cart/cart.component';
     AppRoutingModule,
     HttpClientModule,
     FontAwesomeModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
