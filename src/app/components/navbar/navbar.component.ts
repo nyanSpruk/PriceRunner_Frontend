@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faUserAlt } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'navbar',
   templateUrl: './navbar.component.html',
@@ -11,6 +11,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {}
 
   faCart = faCartShopping;
-
+  faUser = faUserAlt;
   pageTitle: string = 'Price Runner';
 }
