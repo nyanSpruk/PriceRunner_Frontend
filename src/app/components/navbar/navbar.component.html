@@ -1,46 +1,46 @@
 <div class="left">
-    <!-- this is always shown -->
-    <!-- <img -->
-    <!--     class="item logo" -->
-    <!--     src="../../assets/icons/logo.png" -->
-    <!--     [routerLink]="''" -->
-    <!-- /> -->
-    Left
+  <!-- this is always shown -->
+  <!-- <img -->
+  <!--     class="item logo" -->
+  <!--     src="../../assets/icons/logo.png" -->
+  <!--     [routerLink]="''" -->
+  <!-- /> -->
+  <!-- Left -->
 </div>
 
 <div class="center">
-    <a class="item title" [routerLink]="''">{{ this.pageTitle }}</a>
-    <!-- this doesn't show on mobile -->
-    <!-- <a -->
-    <!--     class="item" -->
-    <!--     *ngFor="let item of this.centerItems" -->
-    <!--     [routerLink]="item.routerLink" -->
-    <!--     >{{ item.displayText }}</a -->
-    <!-- > -->
+  <a class="item title" [routerLink]="''">{{ this.pageTitle }}</a>
+  <!-- this doesn't show on mobile -->
+  <!-- <a -->
+  <!--     class="item" -->
+  <!--     *ngFor="let item of this.centerItems" -->
+  <!--     [routerLink]="item.routerLink" -->
+  <!--     >{{ item.displayText }}</a -->
+  <!-- > -->
 </div>
 
 <div class="right">
-    right
-    <!-- this only shows the user icon on mobile -->
-    <!-- <a *ngIf="this.isLoggedIn" class="item" (click)="this.toggleDropdown()" -->
-    <!--     ><span class="user">{{ this.username }}</span> -->
-    <!--     <fa-icon class="icon" [icon]="faUser"></fa-icon -->
-    <!-- ></a> -->
-    <!-- <a -->
-    <!--     *ngIf="!this.isLoggedIn" -->
-    <!--     class="item" -->
-    <!--     (click)="this.toggleDropdown()" -->
-    <!--     [routerLink]="'/login'" -->
-    <!--     ><span class="user">Login</span> -->
-    <!--     <fa-icon class="icon" [icon]="faRightToBracket"></fa-icon -->
-    <!-- ></a> -->
-    <!-- shows when user clicks or hovers on username/icon -->
-    <!-- <div -->
-    <!--     class="dropdown" -->
-    <!--     [ngClass]="{ show: this.isLoggedIn && this.showDropdown }" -->
-    <!-- > -->
-    <!--     <a class="dropdown-item" [routerLink]="'/list'">My quizzes</a> -->
-    <!--     <a class="dropdown-item" [routerLink]="'/settings'">Settings</a> -->
-    <!--     <a class="dropdown-item" (click)="this.authService.logout()">Log out</a> -->
-    <!-- </div> -->
+  <!-- right -->
+  <!-- this only shows the user icon on mobile -->
+  <!-- <a *ngIf="this.isLoggedIn" class="item" (click)="this.toggleDropdown()" -->
+  <!--     ><span class="user">{{ this.username }}</span> -->
+  <!--     <fa-icon class="icon" [icon]="faUser"></fa-icon -->
+  <!-- ></a> -->
+  <!-- <a -->
+  <!--     *ngIf="!this.isLoggedIn" -->
+  <!--     class="item" -->
+  <!--     (click)="this.toggleDropdown()" -->
+  <!--     [routerLink]="'/login'" -->
+  <!--     ><span class="user">Login</span> -->
+  <!--     <fa-icon class="icon" [icon]="faRightToBracket"></fa-icon -->
+  <!-- ></a> -->
+  <!-- shows when user clicks or hovers on username/icon -->
+  <!-- <div -->
+  <!--     class="dropdown" -->
+  <!--     [ngClass]="{ show: this.isLoggedIn && this.showDropdown }" -->
+  <!-- > -->
+  <!--     <a class="dropdown-item" [routerLink]="'/list'">My quizzes</a> -->
+  <!--     <a class="dropdown-item" [routerLink]="'/settings'">Settings</a> -->
+  <!--     <a class="dropdown-item" (click)="this.authService.logout()">Log out</a> -->
+  <!-- </div> -->
 </div>

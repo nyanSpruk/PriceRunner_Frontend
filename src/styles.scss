@@ -21,3 +21,13 @@ body {
     max-height: 100vh;
     height: 100vh;
 }
+
+.wide-60 {
+  @media (min-width: 43rem) {
+    flex-basis: 60%;
+  }
+}
+
+.header {
+  text-align: center;
+}
