@@ -2,7 +2,7 @@
 <div class="main-container">
   <ng-container *ngIf="izdelki.length > 0; else emptyBlock">
     <div *ngFor="let izdelek of izdelki" class="izdelki">
-      {{izdelek.name}}
+      <item [izdelek]="izdelek"></item>
     </div>
   </ng-container>
   <ng-template #emptyBlock>
