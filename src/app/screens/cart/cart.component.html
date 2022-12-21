@@ -5,7 +5,7 @@
       <ng-container *ngIf="izdelki.length > 0; else emptyBlock">
         <h1 class="header">Cart</h1>
         <div *ngFor="let izdelek of izdelki">
-          <item [izdelek]="izdelek" class="izdelki"></item>
+          <item [izdelek]="izdelek" class="center"></item>
         </div>
       </ng-container>
       <ng-template #emptyBlock>
