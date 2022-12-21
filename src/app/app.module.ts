@@ -8,10 +8,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { ItemComponent } from './components/item/item.component';
 import { ColumnsComponent } from './components/columns/columns.component';
 import { ColumnComponent } from './components/columns/column/column.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, ItemComponent, ColumnsComponent, ColumnComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    ItemComponent,
+    ColumnsComponent,
+    ColumnComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FontAwesomeModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
