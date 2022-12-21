@@ -1,0 +1,9 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media (min-width: 43rem) {
+      flex-direction: row;
+  }
+}

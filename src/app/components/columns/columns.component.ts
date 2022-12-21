@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-columns',
+  selector: 'columns',
   templateUrl: './columns.component.html',
-  styleUrls: ['./columns.component.scss']
+  styleUrls: ['./columns.component.scss'],
 })
 export class ColumnsComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
