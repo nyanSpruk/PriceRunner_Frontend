@@ -6,9 +6,11 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ItemComponent } from './components/item/item.component';
+import { ColumnsComponent } from './components/columns/columns.component';
+import { ColumnComponent } from './components/columns/column/column.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, ItemComponent],
+  declarations: [AppComponent, NavbarComponent, ItemComponent, ColumnsComponent, ColumnComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
