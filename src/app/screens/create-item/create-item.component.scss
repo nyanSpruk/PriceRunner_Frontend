@@ -44,11 +44,11 @@
     &:disabled {
       cursor: not-allowed;
 
-      background-color: var(--red);
+      background-color: hsl(0, 0%, 43%);
 
       &:hover {
         cursor: not-allowed;
-        background-color: var(--red);
+        background-color: hsl(0, 0%, 43%);
       }
     }
 

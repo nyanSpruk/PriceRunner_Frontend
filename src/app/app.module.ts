@@ -12,6 +12,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CreateItemComponent } from './screens/create-item/create-item.component';
 import { CartComponent } from './screens/cart/cart.component';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './screens/user/login/login.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { FormsModule } from '@angular/forms';
     ColumnComponent,
     CreateItemComponent,
     CartComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
