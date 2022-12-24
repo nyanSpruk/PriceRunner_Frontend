@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Item } from 'src/app/classes/item';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'cart',
@@ -9,17 +10,14 @@ import { Item } from 'src/app/classes/item';
 })
 export class CartComponent implements OnInit {
   izdelki: Item[] = [];
-  constructor(private http: HttpClient) {}
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.http
-      .get<Item[]>('http://localhost:8080/v1/products')
-      .subscribe((data) => {
-        console.log(data);
-        data.forEach((element) => {
-          console.log(element);
-          this.izdelki.push(element);
-        });
+    this.productService.getProducts().subscribe((data) => {
+      console.log(data);
+      data.forEach((element) => {
+        this.izdelki.push(element);
       });
+    });
   }
 }
