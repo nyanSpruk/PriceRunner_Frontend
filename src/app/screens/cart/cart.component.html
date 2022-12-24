@@ -1,18 +1,8 @@
 <navbar></navbar>
 <columns>
   <column class="wide-60">
-    <div class="main-container">
-      <ng-container *ngIf="izdelki.length > 0; else emptyBlock">
-        <h1 class="header">Cart</h1>
-        <div *ngFor="let izdelek of izdelki">
-          <item [izdelek]="izdelek" class="center"></item>
-        </div>
-      </ng-container>
-      <ng-template #emptyBlock>
-        <div class="empty-block header">
-          <h1>Your cart is empty!</h1>
-        </div>
-      </ng-template>
+    <div class="black center">
+      Here will be the cart items
     </div>
   </column>
 </columns>

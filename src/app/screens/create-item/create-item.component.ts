@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Item } from 'src/app/classes/item';
 
 @Component({
@@ -8,7 +9,7 @@ import { Item } from 'src/app/classes/item';
   styleUrls: ['./create-item.component.scss'],
 })
 export class CreateItemComponent implements OnInit {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -37,6 +38,8 @@ export class CreateItemComponent implements OnInit {
         .subscribe((res) => {
           console.log(res);
         });
+      // TODO IN API PREVENT HAVING TWO ITESM WITH SAME NAME...
+      this.router.navigate(['/']);
       console.log('submit form');
     }
   }

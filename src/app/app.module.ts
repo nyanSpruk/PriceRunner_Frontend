@@ -13,6 +13,7 @@ import { CreateItemComponent } from './screens/create-item/create-item.component
 import { CartComponent } from './screens/cart/cart.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './screens/user/login/login.component';
+import { ProductsComponent } from './screens/products/products.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { LoginComponent } from './screens/user/login/login.component';
     CreateItemComponent,
     CartComponent,
     LoginComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,
