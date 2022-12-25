@@ -56,9 +56,9 @@ export class CreateItemComponent implements OnInit {
         .post('http://localhost:8080/v1/products', item)
         .subscribe((res) => {
           console.log(res);
+          this.router.navigate(['/']);
         });
       // TODO IN API PREVENT HAVING TWO ITESM WITH SAME NAME...
-      this.router.navigate(['/']);
       console.log('submit form');
     }
   }
