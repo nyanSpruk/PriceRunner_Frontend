@@ -17,9 +17,9 @@
               (ngModelChange)="this.validateInputFields()">
 
             <label for="category">Category</label>
-            <select name="category" [(ngModel)]="this.category_id" (ngModelChange)="this.validateInputFields()">
-              <option *ngFor="let category of this.categories" [value]="category.id">
-                {{ category.description }}
+            <select name="category" [(ngModel)]="this.category" (ngModelChange)="this.validateInputFields()">
+              <option *ngFor="let cat of this.categories" [ngValue]="cat">
+                {{ cat.description }}
               </option>
             </select>
 

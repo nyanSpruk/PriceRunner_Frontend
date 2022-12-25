@@ -26,7 +26,7 @@ export class CreateItemComponent implements OnInit {
   public name: string = '';
   public price: number = 0;
   public description: string = '';
-  public category_id: number = 0;
+  public category: Category = { id: 0, name: '' };
 
   public categories: Category[] = [];
 
@@ -37,7 +37,7 @@ export class CreateItemComponent implements OnInit {
       this.name.length > 0 &&
       this.price > 0 &&
       this.description.length > 0 &&
-      this.category_id > 0;
+      this.category !== undefined;
     // return this.isInputValid;
   }
 
@@ -48,12 +48,13 @@ export class CreateItemComponent implements OnInit {
         name: this.name,
         price: this.price,
         description: this.description,
-        category_id: this.category_id,
+        category: this.category,
       };
+      // console.log(this.category);
+      // console.log(item);
       this.http
         .post('http://localhost:8080/v1/products', item)
         .subscribe((res) => {
-          console.log(item);
           console.log(res);
         });
       // TODO IN API PREVENT HAVING TWO ITESM WITH SAME NAME...
