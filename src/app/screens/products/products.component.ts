@@ -7,9 +7,11 @@ import {
 import { Category } from 'src/app/classes/category';
 import { Item } from 'src/app/classes/item';
 import { ProductStore } from 'src/app/classes/product-store';
+import { Store } from 'src/app/classes/store';
 import { CategoryService } from 'src/app/services/category.service';
 import { ProductStorePriceService } from 'src/app/services/product-store-price.service';
 import { ProductService } from 'src/app/services/product.service';
+import { StoreService } from 'src/app/services/store.service';
 
 @Component({
   selector: 'products',
@@ -45,7 +47,7 @@ export class ProductsComponent implements OnInit {
   openProductModal(izdelek: Item) {
     const dialogRef = this.dialog.open(ProductModal, {
       // width: '250px',
-      height: '250px',
+      // height: '250px',
       data: izdelek,
     });
 
@@ -76,7 +78,9 @@ export class ProductModal {
   constructor(
     public dialogRef: MatDialogRef<ProductModal>,
     @Inject(MAT_DIALOG_DATA) public product: Item,
-    private productStoreSerivce: ProductStorePriceService
+    private productStoreSerivce: ProductStorePriceService,
+    private storeServie: StoreService,
+    private productService: ProductService
   ) {}
   public stores: ProductStore[] = [];
 
@@ -87,11 +91,28 @@ export class ProductModal {
         // Remap the data
         data.forEach((element) => {
           console.log(element);
+          let storeId = element[1];
+          let productId = element[2];
+
+          let store: Store = new Store();
+          let product: Item = new Item();
+
           let productStore = {
             id: element[0],
-            name: element[1],
-            price: element[2],
+            store: store,
+            product: product,
+            price: element[3],
           };
+          this.storeServie.getStoreById(storeId).subscribe((data) => {
+            // console.log(data);
+            store = data;
+          });
+          this.productService.getProductById(productId).subscribe((data) => {
+            // console.log(data);
+            product = data;
+          });
+
+          console.log(productStore);
           this.stores.push(productStore);
         });
         console.log(this.stores);
@@ -109,7 +130,9 @@ export class EditModal {
     public dialogRef: MatDialogRef<EditModal>,
     @Inject(MAT_DIALOG_DATA) public product: Item,
     private categoryService: CategoryService,
-    private productStoreSerivce: ProductStorePriceService
+    private productStoreSerivce: ProductStorePriceService,
+    private storeServie: StoreService,
+    private productService: ProductService
   ) {}
 
   isInputValid: boolean = false;
@@ -127,6 +150,50 @@ export class EditModal {
     }
   }
 
+  getData() {
+    this.categoryService.getCategories().subscribe((data) => {
+      console.log(data);
+      data.forEach((element) => {
+        this.categories.push(element);
+      });
+    });
+
+    this.productStoreSerivce
+      .getStoresForProduct(this.product.id!)
+      .subscribe((data) => {
+        // Remap the data
+        data.forEach((element) => {
+          // console.log(element);
+          let storeId = element[1];
+          let productId = element[2];
+
+          let store: Store = new Store();
+          let product: Item = new Item();
+
+          let productStore = {
+            id: element[0],
+            store: store,
+            product: product,
+            price: element[3],
+          };
+          this.storeServie.getStoreById(storeId).subscribe((data) => {
+            // console.log(data);
+            store = data;
+            productStore.store = store;
+          });
+          this.productService.getProductById(productId).subscribe((data) => {
+            // console.log(data);
+            product = data;
+            productStore.product = product;
+          });
+
+          // console.log(productStore);
+          this.stores.push(productStore);
+        });
+        console.log(this.stores);
+      });
+  }
+
   addStore() {
     // TODO Add functionality to add a store
     console.log('Add store');
@@ -134,7 +201,16 @@ export class EditModal {
 
   removeStore(store: ProductStore) {
     // TODO Add functionality to remove a store
-    console.log('Remove store');
+    this.productStoreSerivce.deleteEntity(store.id!).subscribe((data) => {
+      this.stores.forEach((element, index) => {
+        if (element.id == store.id) {
+          this.stores.splice(index, 1);
+        }
+      });
+      console.log(data);
+      console.log('Remove store');
+      // this.getData();
+    });
   }
 
   validateInputFields() {
@@ -148,29 +224,7 @@ export class EditModal {
 
   ngOnInit(): void {
     console.log(this.product);
-    this.categoryService.getCategories().subscribe((data) => {
-      console.log(data);
-      data.forEach((element) => {
-        this.categories.push(element);
-      });
-    });
-
-    this.productStoreSerivce
-      .getStoresForProduct(this.product.id!)
-      .subscribe((data) => {
-        // Remap the data
-        data.forEach((element) => {
-          console.log(element);
-          let productStore = {
-            id: element[0],
-            name: element[1],
-            price: element[2],
-          };
-          this.stores.push(productStore);
-        });
-        console.log(this.stores);
-      });
-
+    this.getData();
     this.validateInputFields();
   }
 }

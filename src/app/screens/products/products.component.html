@@ -11,7 +11,13 @@
           <mat-list #products>
             <mat-list-item (click)="openProductModal(izdelek)" class="list-item" *ngFor="let izdelek of izdelki">
               <div class="item-container center">
-                {{izdelek.name}}
+                <div>
+
+                  {{izdelek.name}}
+                  <div class="description-text">
+                    {{izdelek.description}}
+                  </div>
+                </div>
                 <div>
                   <button (click)="openEditModal(izdelek)" mat-icon-button
                     aria-label="Example icon button with a vertical three dot icon">

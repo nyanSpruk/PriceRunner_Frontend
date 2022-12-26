@@ -16,6 +16,11 @@ export class ProductStorePriceService {
     return this.http.get<[]>(url).pipe(catchError(this.handleError));
   }
 
+  public deleteEntity(id: number) {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete(url).pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
     return throwError(
       () => (error.error && error.error.message) || error.statusText

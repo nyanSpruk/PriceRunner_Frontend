@@ -19,10 +19,10 @@
   <mat-list>
     <mat-list-item *ngFor="let store of this.stores">
       <div class="store-item">
-        {{store.name}}
+        {{store.store.name}}
         <div>
-          <label for="pricez">Price </label>
-          <input type="number" name="price_{{store.name}}" [(ngModel)]="store.price"
+          <label for="price_{{store.store.name}}">Price </label>
+          <input type="number" name="price_{{store.id}}" [(ngModel)]="store.price"
             (ngModelChange)="this.validateInputFields()">
         </div>
       </div>

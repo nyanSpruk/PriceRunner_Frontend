@@ -10,7 +10,7 @@ import { Store } from '../classes/store';
 export class StoreService {
   constructor(private http: HttpClient) {}
 
-  private apiUrl = `${environment.apiUrl}/stores`;
+  private apiUrl = `${environment.apiUrl}/store`;
 
   public getStores() {
     const url = `${this.apiUrl}`;
