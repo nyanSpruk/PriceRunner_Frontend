@@ -3,6 +3,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Category } from 'src/app/classes/category';
 import { Item } from 'src/app/classes/item';
+import { CategoryService } from 'src/app/services/category.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'create-item',
@@ -10,21 +12,22 @@ import { Item } from 'src/app/classes/item';
   styleUrls: ['./create-item.component.scss'],
 })
 export class CreateItemComponent implements OnInit {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private categoryService: CategoryService,
+    private productService: ProductService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.http
-      .get<Category[]>('http://localhost:8080/v1/categories')
-      .subscribe((res) => {
-        res.forEach((element) => {
-          this.categories.push(element);
-        });
-        console.log(this.categories);
+    this.categoryService.getCategories().subscribe((data) => {
+      console.log(data);
+      data.forEach((element) => {
+        this.categories.push(element);
       });
+    });
   }
 
   public name: string = '';
-  public price: number = 0;
   public description: string = '';
   public category: Category = { id: 0, name: '' };
 
@@ -35,7 +38,6 @@ export class CreateItemComponent implements OnInit {
   validateInputFields() {
     this.isInputValid =
       this.name.length > 0 &&
-      this.price > 0 &&
       this.description.length > 0 &&
       this.category !== undefined;
     // return this.isInputValid;
@@ -46,18 +48,17 @@ export class CreateItemComponent implements OnInit {
     if (this.isInputValid) {
       let item: Item = {
         name: this.name,
-        price: this.price,
         description: this.description,
         category: this.category,
       };
       // console.log(this.category);
       // console.log(item);
-      this.http
-        .post('http://localhost:8080/v1/products', item)
-        .subscribe((res) => {
-          console.log(res);
-          this.router.navigate(['/']);
-        });
+
+      this.productService.createProduct(item).subscribe((data) => {
+        console.log(data);
+        this.router.navigate(['/']);
+      });
+
       // TODO IN API PREVENT HAVING TWO ITESM WITH SAME NAME...
       console.log('submit form');
     }

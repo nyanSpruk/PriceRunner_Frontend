@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>{{product.name}}</h2>
+<ng-container *ngIf="this.stores.length > 0; else emptyBlock">
+  <p>Prices for {{product.name}} in different stores</p>
+  <mat-list>
+    <mat-list-item *ngFor="let store of this.stores">
+      <div class="stores center">
+        <div>
+          Store: {{store.name}}
+        </div>
+        <div>
+          Price: {{store.price}}$
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+
+</ng-container>
+<ng-template #emptyBlock>
+  <div class="empty-block header">
+    <h3>No store sells this product!</h3>
+  </div>

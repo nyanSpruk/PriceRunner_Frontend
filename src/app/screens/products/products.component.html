@@ -5,10 +5,27 @@
     <div class="black">
       <div class="main-container">
         <ng-container *ngIf="izdelki.length > 0; else emptyBlock">
+
+
           <h1 class="header">Products</h1>
-          <div *ngFor="let izdelek of izdelki">
-            <item [izdelek]="izdelek" class="center"></item>
-          </div>
+          <mat-list #products>
+            <mat-list-item (click)="openProductModal(izdelek)" class="list-item" *ngFor="let izdelek of izdelki">
+              <div class="item-container center">
+                {{izdelek.name}}
+                <div>
+                  <button (click)="openEditModal(izdelek)" mat-icon-button
+                    aria-label="Example icon button with a vertical three dot icon">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+
+              <mat-divider></mat-divider>
+            </mat-list-item>
+          </mat-list>
         </ng-container>
         <ng-template #emptyBlock>
           <div class="empty-block header">

@@ -13,7 +13,18 @@ import { CreateItemComponent } from './screens/create-item/create-item.component
 import { CartComponent } from './screens/cart/cart.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './screens/user/login/login.component';
-import { ProductsComponent } from './screens/products/products.component';
+import {
+  EditModal,
+  ProductModal,
+  ProductsComponent,
+} from './screens/products/products.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -26,6 +37,8 @@ import { ProductsComponent } from './screens/products/products.component';
     CartComponent,
     LoginComponent,
     ProductsComponent,
+    EditModal,
+    ProductModal,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +46,13 @@ import { ProductsComponent } from './screens/products/products.component';
     HttpClientModule,
     FontAwesomeModule,
     FormsModule,
+    BrowserAnimationsModule,
+    MatListModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDialogModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
