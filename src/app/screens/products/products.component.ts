@@ -90,7 +90,7 @@ export class ProductModal {
       .subscribe((data) => {
         // Remap the data
         data.forEach((element) => {
-          console.log(element);
+          // console.log(element);
           let storeId = element[1];
           let productId = element[2];
 
@@ -106,16 +106,30 @@ export class ProductModal {
           this.storeServie.getStoreById(storeId).subscribe((data) => {
             // console.log(data);
             store = data;
+            productStore.store = store;
           });
           this.productService.getProductById(productId).subscribe((data) => {
             // console.log(data);
             product = data;
+            productStore.product = product;
           });
 
-          console.log(productStore);
+          // console.log(productStore);
           this.stores.push(productStore);
         });
         console.log(this.stores);
+        this.storeServie.getStores().subscribe((data) => {
+          console.log(data);
+          let storesInUse: string[] = [];
+          this.stores.forEach((store) => {
+            console.log(store.store.name!);
+            storesInUse.push(store.store.name!);
+          });
+
+          console.log('storesInUse');
+          console.log(storesInUse);
+          // console.log(this.allStores);
+        });
       });
   }
 }
