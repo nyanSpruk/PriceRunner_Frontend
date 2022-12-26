@@ -42,11 +42,6 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  name: string = '';
-  price: number = 0;
-  description: string = '';
-  category: Category[] = [];
-
   openProductModal(izdelek: Item) {
     const dialogRef = this.dialog.open(ProductModal, {
       // width: '250px',
@@ -61,8 +56,8 @@ export class ProductsComponent implements OnInit {
 
   openEditModal(izdelek: Item) {
     const dialogRef = this.dialog.open(EditModal, {
-      // width: '250px',
-      height: '250px',
+      width: '500px',
+      // height: '250px',
       data: izdelek,
     });
 
@@ -93,8 +88,9 @@ export class ProductModal {
         data.forEach((element) => {
           console.log(element);
           let productStore = {
-            name: element[0],
-            price: element[1],
+            id: element[0],
+            name: element[1],
+            price: element[2],
           };
           this.stores.push(productStore);
         });
@@ -123,21 +119,35 @@ export class EditModal {
 
   submitForm() {
     if (this.isInputValid) {
+      console.log(this.product);
+      console.log(this.stores);
       // this.productService.updateProduct(this.product).subscribe((data) => {
       //   console.log(data);
       // });
     }
   }
 
+  addStore() {
+    // TODO Add functionality to add a store
+    console.log('Add store');
+  }
+
+  removeStore(store: ProductStore) {
+    // TODO Add functionality to remove a store
+    console.log('Remove store');
+  }
+
   validateInputFields() {
-    return (
+    this.isInputValid =
       this.product.name != '' &&
       this.product.price != 0 &&
-      this.product.description != ''
-    );
+      this.product.description != '';
+
+    console.log(this.isInputValid);
   }
 
   ngOnInit(): void {
+    console.log(this.product);
     this.categoryService.getCategories().subscribe((data) => {
       console.log(data);
       data.forEach((element) => {
@@ -152,12 +162,15 @@ export class EditModal {
         data.forEach((element) => {
           console.log(element);
           let productStore = {
-            name: element[0],
-            price: element[1],
+            id: element[0],
+            name: element[1],
+            price: element[2],
           };
           this.stores.push(productStore);
         });
         console.log(this.stores);
       });
+
+    this.validateInputFields();
   }
 }

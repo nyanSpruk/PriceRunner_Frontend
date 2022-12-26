@@ -1,5 +1,5 @@
 <h2 mat-dialog-title>Edit product - {{product.name}}</h2>
-<form class="settings">
+<form class="edit-form">
   <label for="name">Name</label>
   <input type="text" name="name" [(ngModel)]="product.name" (ngModelChange)="this.validateInputFields()">
   <label for="description">Description</label>
@@ -7,22 +7,31 @@
 
   <label for="category">Category</label>
   <select name="category" [(ngModel)]="product.category" (ngModelChange)="this.validateInputFields()">
-    <option *ngFor="let cat of this.categories" [ngValue]="cat"
-      [selected]="cat.name == product.category?.name! ? true : null">
-      {{ cat.description }}
+    <option disabled value="" [selected]="true">Select category</option>
+    <option *ngFor="let cat of this.categories" [ngValue]="cat">
+      {{ cat.name }}
     </option>
   </select>
 
+  <mat-divider></mat-divider>
+
+  <h2 mat-dialog-title>Stores</h2>
+  <mat-list>
+    <mat-list-item *ngFor="let store of this.stores">
+      <div class="store-item">
+        {{store.name}}
+        <div>
+          <label for="pricez">Price </label>
+          <input type="number" name="price_{{store.name}}" [(ngModel)]="store.price"
+            (ngModelChange)="this.validateInputFields()">
+        </div>
+      </div>
+      <mat-icon (click)="this.removeStore(store)">delete</mat-icon>
+      <!-- <mat-divider></mat-divider> -->
+    </mat-list-item>
+    <input type="submit" value="Add store" (click)="this.addStore()" />
+  </mat-list>
   <input type="submit" value="Submit" [disabled]="!this.isInputValid" [title]="
               !this.isInputValid ? 'Invalid fields!' : ''
             " (click)="this.submitForm()" />
 </form>
-
-<div>
-  <mat-list>
-    <mat-list-item *ngFor="let store of this.stores">
-      {{store.name}}
-      {{store.price}}
-    </mat-list-item>
-  </mat-list>
-</div>
