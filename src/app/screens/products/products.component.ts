@@ -140,6 +140,10 @@ export class EditModal {
 
   public stores: ProductStore[] = [];
 
+  storeName: string = '';
+  storePrice: number = 0;
+  allStores: Store[] = [];
+  allStoreNames: string[] = [];
   submitForm() {
     if (this.isInputValid) {
       console.log(this.product);
@@ -152,7 +156,6 @@ export class EditModal {
 
   getData() {
     this.categoryService.getCategories().subscribe((data) => {
-      console.log(data);
       data.forEach((element) => {
         this.categories.push(element);
       });
@@ -191,12 +194,105 @@ export class EditModal {
           this.stores.push(productStore);
         });
         console.log(this.stores);
+        this.storeServie.getStores().subscribe((data) => {
+          console.log(data);
+          let storesInUse: string[] = [];
+          this.allStoreNames = [];
+          this.allStores = [];
+          this.stores.forEach((store) => {
+            console.log(store.store.name!);
+            storesInUse.push(store.store.name!);
+          });
+
+          console.log('storesInUse');
+          console.log(storesInUse);
+          this.allStoreNames = [];
+          this.allStores = [];
+          data.forEach((element) => {
+            // Add to all stores if its not in stores
+            if (!storesInUse.includes(element.name!)) {
+              this.allStores.push(element);
+              this.allStoreNames.push(element.name!);
+            }
+          });
+          // console.log(this.allStores);
+        });
       });
+  }
+  areStoreFieldsValid: boolean = false;
+  areStoreFieldsValidFun() {
+    this.areStoreFieldsValid = this.storeName != '' && this.storePrice > 0;
+    console.log('STORE ', this.areStoreFieldsValid);
   }
 
   addStore() {
     // TODO Add functionality to add a store
-    console.log('Add store');
+    // console.log(this.storeName);
+    // console.log(this.storePrice);
+
+    let store: Store = new Store();
+    let StoreProduct: ProductStore = {
+      store: store,
+      product: this.product,
+      price: this.storePrice,
+    };
+    if (this.allStoreNames.includes(this.storeName)) {
+      console.log('Store already exists');
+      this.allStores.forEach((element) => {
+        if (element.name == this.storeName) {
+          store = element;
+          StoreProduct.store = store;
+          console.log(StoreProduct);
+          this.productStoreSerivce
+            .createEntity(StoreProduct)
+            .subscribe((data) => {
+              console.log(data);
+              this.stores.push(data);
+            });
+
+          this.allStores.forEach((element, index) => {
+            if (element.name == this.storeName) {
+              this.allStores.splice(index, 1);
+            }
+          });
+          console.log('Add store');
+          // this.getData();
+          this.storeName = '';
+          this.storePrice = 0;
+        }
+      });
+    } else {
+      store.name = this.storeName;
+      this.storeServie.createStore(store).subscribe((data) => {
+        console.log(data);
+        store = data;
+        store.id = data.id;
+        store.name = this.storeName;
+        let StoreProduct: ProductStore = {
+          store: store,
+          product: this.product,
+          price: this.storePrice,
+        };
+
+        console.log(JSON.stringify(StoreProduct));
+        this.productStoreSerivce
+          .createEntity(StoreProduct)
+          .subscribe((data) => {
+            console.log(data);
+            this.stores.push(data);
+          });
+
+        this.allStores.forEach((element, index) => {
+          if (element.name == this.storeName) {
+            this.allStores.splice(index, 1);
+          }
+        });
+        console.log('Add store');
+        // this.getData();
+        this.storeName = '';
+        this.storePrice = 0;
+      });
+    }
   }
 
   removeStore(store: ProductStore) {
@@ -226,5 +322,6 @@ export class EditModal {
     console.log(this.product);
     this.getData();
     this.validateInputFields();
+    this.areStoreFieldsValidFun();
   }
 }

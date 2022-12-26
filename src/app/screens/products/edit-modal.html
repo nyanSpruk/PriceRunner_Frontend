@@ -29,7 +29,13 @@
       <mat-icon (click)="this.removeStore(store)">delete</mat-icon>
       <!-- <mat-divider></mat-divider> -->
     </mat-list-item>
-    <input type="submit" value="Add store" (click)="this.addStore()" />
+    <div>
+      <input class="store-inp" type="text" name="store-name" [(ngModel)]="this.storeName" placeholder="Store Name"
+        (ngModelChange)="this.areStoreFieldsValidFun()" />
+      <input class="store-inp" type="number" name="price-name" placeholder="0" [(ngModel)]="this.storePrice"
+        (ngModelChange)="this.areStoreFieldsValidFun()" />
+    </div>
+    <input type="submit" value="Add store" (click)="this.addStore()" [disabled]="!this.areStoreFieldsValid" />
   </mat-list>
   <input type="submit" value="Submit" [disabled]="!this.isInputValid" [title]="
               !this.isInputValid ? 'Invalid fields!' : ''

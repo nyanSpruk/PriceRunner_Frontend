@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ProductStore } from '../classes/product-store';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,13 @@ export class ProductStorePriceService {
   public deleteEntity(id: number) {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete(url).pipe(catchError(this.handleError));
+  }
+
+  public createEntity(entity: ProductStore) {
+    const url = `${this.apiUrl}`;
+    return this.http
+      .post<ProductStore>(url, entity)
+      .pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
