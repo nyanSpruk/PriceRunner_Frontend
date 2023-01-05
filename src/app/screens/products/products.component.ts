@@ -178,10 +178,14 @@ export class EditModal {
     if (this.isInputValid) {
       console.log(this.product);
       console.log(this.stores);
-      // this.productService.updateProduct(this.product).subscribe((data) => {
-      //   console.log(data);
-      // });
+      this.productService
+        .updateProductWithId(this.product.id!, this.product)
+        .subscribe((data) => {
+          console.log(data);
+        });
     }
+
+    this.dialogRef.close();
   }
 
   getData() {
