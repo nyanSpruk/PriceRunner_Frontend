@@ -5,9 +5,11 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { Category } from 'src/app/classes/category';
+import { CatFact } from 'src/app/classes/catFact';
 import { Item } from 'src/app/classes/item';
 import { ProductStore } from 'src/app/classes/product-store';
 import { Store } from 'src/app/classes/store';
+import { CatFactsService } from 'src/app/services/cat-facts.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { ProductStorePriceService } from 'src/app/services/product-store-price.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -23,12 +25,19 @@ export class ProductsComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private productStoreS: ProductStorePriceService,
+    private catFactsSerivce: CatFactsService,
     public dialog: MatDialog
   ) {}
 
+  catFact?: CatFact;
   izdelkiStores: any = [];
 
   ngOnInit(): void {
+    this.catFactsSerivce.getCatFact().subscribe((data) => {
+      console.log(data);
+      this.catFact = data;
+    });
+
     this.productService.getProducts().subscribe((data) => {
       console.log(data);
       data.forEach((element) => {

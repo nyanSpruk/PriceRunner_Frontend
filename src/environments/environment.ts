@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://prpo.bl4ko.com/v1',
+  apiUrl: 'http://localhost:8080/v1',
 };
 
 /*
