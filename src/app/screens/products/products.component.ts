@@ -44,6 +44,13 @@ export class ProductsComponent implements OnInit {
     });
   }
 
+  deleteProduct(izdelek: Item) {
+    this.productService.deleteProductWithId(izdelek.id!).subscribe((data) => {
+      console.log(data);
+      this.izdelki = this.izdelki.filter((item) => item.id !== izdelek.id);
+    });
+  }
+
   openProductModal(izdelek: Item) {
     const dialogRef = this.dialog.open(ProductModal, {
       // width: '250px',
