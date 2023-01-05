@@ -1,5 +1,8 @@
 # PriceRunnerFrontend
 
+This website gives you a simple comparsion between prices for a given product.
+You can add products. Add them to stores and their prices.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.6.
 
 ## Development server
