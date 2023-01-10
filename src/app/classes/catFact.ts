@@ -1,3 +1,3 @@
-export class CatFact {
-  fact?: string;
+export class Joke {
+  joke?: string;
 }

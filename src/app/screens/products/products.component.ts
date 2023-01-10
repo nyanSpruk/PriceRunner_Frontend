@@ -5,12 +5,12 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { Category } from 'src/app/classes/category';
-import { CatFact } from 'src/app/classes/catFact';
+import { Joke } from 'src/app/classes/catFact';
 import { Item } from 'src/app/classes/item';
 import { ProductStore } from 'src/app/classes/product-store';
 import { Store } from 'src/app/classes/store';
-import { CatFactsService } from 'src/app/services/cat-facts.service';
 import { CategoryService } from 'src/app/services/category.service';
+import { JokeService } from 'src/app/services/joke.service';
 import { ProductStorePriceService } from 'src/app/services/product-store-price.service';
 import { ProductService } from 'src/app/services/product.service';
 import { StoreService } from 'src/app/services/store.service';
@@ -25,17 +25,17 @@ export class ProductsComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private productStoreS: ProductStorePriceService,
-    private catFactsSerivce: CatFactsService,
+    private jokeService: JokeService,
     public dialog: MatDialog
   ) {}
 
-  catFact?: CatFact;
+  joke?: Joke;
   izdelkiStores: any = [];
 
   ngOnInit(): void {
-    this.catFactsSerivce.getCatFact().subscribe((data) => {
+    this.jokeService.getJoke().subscribe((data) => {
       console.log(data);
-      this.catFact = data;
+      this.joke = data;
     });
 
     this.productService.getProducts().subscribe((data) => {

@@ -5,12 +5,12 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class CatFactsService {
+export class JokeService {
   constructor(private http: HttpClient) {}
 
-  private apiUrl = `${environment.apiUrl}/cat-facts`;
+  private apiUrl = `${environment.apiUrl}/jokes`;
 
-  public getCatFact() {
+  public getJoke() {
     return this.http.get(this.apiUrl);
   }
 }
